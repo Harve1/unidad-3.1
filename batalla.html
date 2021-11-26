@@ -1,0 +1,61 @@
+<script>
+    //Batalla naval
+    var tablero1 = [];
+    var tablero2 = [];
+
+    jugar(); // --> Funcion que da inicio al juego
+
+    function jugar() {
+        crearTablero(tablero1);
+        crearTablero2(tablero2);
+        disparo(tablero1, tablero2);
+    }
+
+    function crearTablero(t1) {
+        var tamaño = prompt("Jugador1. Ingrese la cantidad de barcos a ingresar (min 1 - max 5");
+        for (var i = 0; i < tamaño; i++) {
+            var posicion = prompt("Ingrese la posición de el barco " + (i + 1));
+            t1.push(posicion);
+        }
+    }
+
+    function crearTablero2(t2) {
+        var tamaño1 = prompt("Jugador2. Ingrese la cantidad de barcos a ingresar (min 1 - max5)");
+        for (var i = 0; i < tamaño1; i++) {
+            var posicion1 = prompt("Ingrese la posición de el barco " + (i + 1));
+            t2.push(posicion1);
+        }
+    }
+
+    function disparo(t1, t2) {
+        var repetir = 1;
+        while (repetir > 0) {
+            var disparo = prompt("Jugador1. Ingrese la posición del disparo");
+            for (let i = 0; i < t2.length; i++) {
+                if (t2[i] == disparo) {
+                    alert("Le has dado¡¡¡¡");
+                    delete t2[i];
+                }
+            }
+            if (Object.entries(t2).length === 0) {
+                alert("Jugador 1 ha ganado");
+                repetir--;
+                return;
+            }
+
+            var disparo1 = prompt("Jugador2. Ingrese la posición del disparo");
+            for (let i = 0; i < t1.length; i++) {
+                if (t1[i] == disparo1) {
+                    alert("Le has dado¡¡¡¡");
+                    delete t1[i];
+                }
+
+            }
+            if (Object.entries(t1).length === 0) {
+                alert("Jugador 2 ha ganado");
+                repetir--;
+                return;
+            }
+        }
+    }
+</script>
